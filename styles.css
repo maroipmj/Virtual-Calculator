@@ -1,3 +1,4 @@
+/* BASE STYLES (UNCHANGED FROM ORIGINAL DESKTOP) */
 *, *::before, *::after {
     box-sizing: border-box;
     font-family: Gotham Rounded, sans-serif;
@@ -7,15 +8,16 @@
 body {
     padding: 0;
     margin: 0;
-    background: linear-gradient(to right,#624E88,#FFB4A2,#E5989B);
+    background: linear-gradient(to right, #624E88, #FFB4A2, #E5989B);
 }
 
+/* DESKTOP STYLES (EXACTLY AS ORIGINAL) */
 .calculator-grid {
     display: grid;
     justify-content: center;
     align-content: center;
     min-height: 100vh;
-    grid-template-columns: repeat(4,100px);
+    grid-template-columns: repeat(4, 100px);
     grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }
 
@@ -37,7 +39,7 @@ body {
 
 .output {
     grid-column: 1 / -1;
-    background-color:rgba(85, 85, 85, 0.75);
+    background-color: rgba(85, 85, 85, 0.75);
     display: flex;
     align-items: flex-end;
     justify-content: space-around;
@@ -49,10 +51,83 @@ body {
 
 .output .previous-operand {
     color: rgba(255, 255, 255, .75);
-    font-size: 1.5 rem;
+    font-size: 1.5rem;
 }
 
 .output .current-operand {
     color: white;
     font-size: 2.5rem;
+}
+
+/* MOBILE OPTIMIZATION (NEW ADDITIONS) */
+@media (max-width: 768px) {
+    /* Touch optimization */
+    .calculator-grid > button {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+    }
+    
+    /* Layout adjustments */
+    .calculator-grid {
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: minmax(100px, auto) repeat(5, 1fr);
+        gap: 6px;
+        padding: 10px;
+        width: 100%;
+        max-width: 100vw;
+        min-height: 80vh;
+        margin: 0 auto;
+    }
+    
+    /* Button sizing */
+    .calculator-grid > button {
+        font-size: 1.8rem;
+        min-height: 70px;
+        border-radius: 5px;
+    }
+    
+    /* Output area */
+    .output {
+        padding: 12px;
+    }
+    
+    .output .previous-operand {
+        font-size: 1.3rem;
+    }
+    
+    .output .current-operand {
+        font-size: 2.3rem;
+    }
+    
+    /* Press effect */
+    .calculator-grid > button:active {
+        transform: scale(0.96);
+        background-color: rgba(255, 255, 255, 0.85);
+    }
+    
+    /* Landscape orientation */
+    @media (orientation: landscape) {
+        .calculator-grid {
+            grid-template-rows: minmax(80px, auto) repeat(5, 1fr);
+            max-width: 90vh;
+            min-height: 90vw;
+        }
+        
+        .calculator-grid > button {
+            min-height: 60px;
+            font-size: 1.6rem;
+        }
+    }
+}
+
+/* VERY SMALL PHONES (OPTIONAL) */
+@media (max-width: 400px) {
+    .calculator-grid > button {
+        font-size: 1.6rem;
+        min-height: 65px;
+    }
+    
+    .output .current-operand {
+        font-size: 2rem;
+    }
 }
