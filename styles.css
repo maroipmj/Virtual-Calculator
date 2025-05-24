@@ -6,7 +6,10 @@
 }
 
 body {
-    padding: 0;
+    display: flex;
+    padding: 50px;
+    justify-content: center;
+    align-items: center;
     margin: 0;
     background: linear-gradient(to right, #624E88, #FFB4A2, #E5989B);
 }
@@ -14,9 +17,11 @@ body {
 /* DESKTOP STYLES (EXACTLY AS ORIGINAL) */
 .calculator-grid {
     display: grid;
+    max-width: 400px;
+    margin: 0 auto;
+    height: auto;
     justify-content: center;
     align-content: center;
-    min-height: 100vh;
     grid-template-columns: repeat(4, 100px);
     grid-template-rows: minmax(120px, auto) repeat(5, 100px);
 }
@@ -109,7 +114,7 @@ body {
     @media (orientation: landscape) {
         .calculator-grid {
             grid-template-rows: minmax(80px, auto) repeat(5, 1fr);
-            max-width: 90vh;
+            
             min-height: 90vw;
         }
         
